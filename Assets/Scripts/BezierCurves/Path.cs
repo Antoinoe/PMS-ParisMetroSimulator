@@ -4,7 +4,7 @@ using UnityEngine;
 namespace BezierCurves
 {
     [System.Serializable]
-    public class Path : MonoBehaviour
+    public class Path
     {
         [SerializeField, HideInInspector] 
         private List<Vector2> points;
