@@ -9,7 +9,7 @@ namespace BezierCurves
 
         public void CreatePath()
         {
-            path = new Path(transform.position); //path = new Path(transform.position); est interdit, on Add le component puis on appelle le constructeur nous même...
+            path = new Path(transform.position);
         }
     }
 }

@@ -1,8 +1,6 @@
-using System;
 using BezierCurves;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Editor
 {
@@ -31,7 +29,7 @@ namespace Editor
                 SceneView.RepaintAll();
             }
 
-            bool autoSetControlPoint = GUILayout.Toggle(_path.AutoSetControlPoints, "Auto Set Control Points");
+            var autoSetControlPoint = GUILayout.Toggle(_path.AutoSetControlPoints, "Auto Set Control Points");
             if (autoSetControlPoint != _path.AutoSetControlPoints)
             {
                 Undo.RecordObject(_creator, "Toggle Auto Set Controls");
@@ -53,21 +51,20 @@ namespace Editor
 
         private void Input()
         {
-            Event guiEvent =  Event.current;
+            var guiEvent =  Event.current;
             Vector2 mousePos = HandleUtility.GUIPointToWorldRay(guiEvent.mousePosition).origin;
 
-            if (guiEvent.type == EventType.MouseDown && guiEvent.button == 0 && guiEvent.shift)
-            {
-                Undo.RecordObject(_creator, "Add segment");
-                _path.AddSegment(mousePos);
-            }
+            if (guiEvent.type != EventType.MouseDown || guiEvent.button != 0 || !guiEvent.shift) return;
+            
+            Undo.RecordObject(_creator, "Add segment");
+            _path.AddSegment(mousePos);
         }
 
         private void Draw()
         {
-            for (int i = 0; i < _path.NumSegments; i++)
+            for (var i = 0; i < _path.NumSegments; i++)
             {
-                Vector2[] points = _path.GetPointsInSegment(i);
+                var points = _path.GetPointsInSegment(i);
                 Handles.color = Color.black;
                 Handles.DrawLine(points[1], points[0]);
                 Handles.DrawLine(points[2], points[3]);
@@ -75,16 +72,16 @@ namespace Editor
             }
             
             
-            for (int i = 0; i < _path.NumPoints; i++)
+            for (var i = 0; i < _path.NumPoints; i++)
             {
-                bool isAnchor = i % 3 == 0;
+                var isAnchor = i % 3 == 0;
                 Handles.color = isAnchor? Color.red : Color.yellow;
                 Vector2 newPos = Handles.FreeMoveHandle(_path[i], Quaternion.identity, isAnchor ? .1f : .05f, Vector2.zero, Handles.CylinderHandleCap);
-                if (_path[i] != newPos)
-                {
-                    Undo.RecordObject(_creator, "Move point"); // Le undo ne marche pas ??  
-                    _path.MovePoint(i,newPos);
-                }
+                
+                if (_path[i] == newPos) continue;
+                
+                Undo.RecordObject(_creator, "Move point"); // Le undo ne marche pas ??  
+                _path.MovePoint(i,newPos);
             }
         }
         private void OnEnable()
