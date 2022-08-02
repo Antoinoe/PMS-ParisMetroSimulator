@@ -2,6 +2,7 @@ using System;
 using BezierCurves;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Editor
 {
@@ -11,6 +12,38 @@ namespace Editor
         private PathCreator _creator;
         private Path _path;
 
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+            
+            EditorGUI.BeginChangeCheck();
+            if (GUILayout.Button("Create new"))
+            {
+                Undo.RecordObject(_creator, "Create new");
+                _creator.CreatePath();
+                _path = _creator.path;
+                SceneView.RepaintAll();
+            }
+            if (GUILayout.Button("Toggle closed"))
+            {
+                Undo.RecordObject(_creator, "Toggle closed");
+                _path.ToggleClosed();
+                SceneView.RepaintAll();
+            }
+
+            bool autoSetControlPoint = GUILayout.Toggle(_path.AutoSetControlPoints, "Auto Set Control Points");
+            if (autoSetControlPoint != _path.AutoSetControlPoints)
+            {
+                Undo.RecordObject(_creator, "Toggle Auto Set Controls");
+                _path.AutoSetControlPoints = autoSetControlPoint;
+            }
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                SceneView.RepaintAll();
+            }
+            
+        }
 
         private void OnSceneGUI()
         {

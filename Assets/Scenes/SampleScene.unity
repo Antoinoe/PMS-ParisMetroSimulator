@@ -310,7 +310,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1138911317}
-  - component: {fileID: 1138911316}
   - component: {fileID: 1138911318}
   m_Layer: 0
   m_Name: GameObject
@@ -319,19 +318,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1138911316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1138911314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ef2eea7d37e74d479b3065d09428be3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  path: {fileID: 1138911318}
 --- !u!4 &1138911317
 Transform:
   m_ObjectHideFlags: 0
@@ -340,7 +326,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1138911314}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -356,11 +342,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1138911314}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c390cd13b125574ca6487fc38d87c8a, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ef2eea7d37e74d479b3065d09428be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points:
-  - {x: -1, y: 0}
-  - {x: -0.5, y: 0.5}
-  - {x: 0.5, y: -0.5}
-  - {x: 1, y: 0}
+  path:
+    points:
+    - {x: -0.8125739, y: 0.40241498}
+    - {x: 0.001974821, y: 1.0531869}
+    - {x: 0.3390996, y: 1.1299772}
+    - {x: 1.259089, y: 0.6394538}
+    - {x: 1.8878763, y: 0.30419472}
+    - {x: 1.9919422, y: 0.08176452}
+    - {x: 1.9136453, y: -0.6265021}
+    - {x: 1.8551704, y: -1.1554604}
+    - {x: 1.7171544, y: -1.2279141}
+    - {x: 1.2300912, y: -1.4423567}
+    - {x: 0.5407581, y: -1.7458541}
+    - {x: 0.42034036, y: -1.6660843}
+    - {x: -0.27482986, y: -1.3762064}
+    - {x: -0.82570034, y: -1.1464999}
+    - {x: -1.0071167, y: -1.1450257}
+    - {x: -1.1513222, y: -0.5658642}
+    - {x: -1.2752486, y: -0.068148404}
+    - {x: -1.2132989, y: 0.08226153}
+    isClosed: 1
+    autoSetControlPoints: 1
